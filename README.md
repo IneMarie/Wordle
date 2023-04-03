@@ -1,3 +1,5 @@
+<img align="right" width=200 src="images/wordle_example.png">
+
 # WORDLE
 I denne semesteroppgaven skal jeg utvikle en norsk versjo av wordle. Det originale wordle kan spilles på: [nytimes.com/games/wordle](https://www.nytimes.com/games/wordle/index.html). 
 
