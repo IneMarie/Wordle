@@ -10,7 +10,7 @@ public class Main {
 
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setTitle("INF101");
+    frame.setTitle("INF101 sem2 - Wordle");
     frame.setContentPane(view);
     frame.pack();
     frame.setVisible(true);
