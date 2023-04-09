@@ -11,15 +11,15 @@ import java.util.Random;
 
 public class WordDictionary implements WordDictionaryInterface {
     ArrayList<String> validWords;
-
+    
     public WordDictionary(String fileName, int wordLength) throws IOException {
         File file = new File(fileName);
         BufferedReader reader = new BufferedReader(
-            new FileReader(file, StandardCharsets.UTF_8)
+        new FileReader(file, StandardCharsets.UTF_8)
         );
         List<String> lines = reader.lines().toList();
         reader.close();
-
+        
         validWords = new ArrayList<String>();
         for (String line : lines) {
             if (line.length() == wordLength){
@@ -27,15 +27,20 @@ public class WordDictionary implements WordDictionaryInterface {
             }
         }
     }
-
+    
+    // Henter ut random ord fra den filtrerte lista
     public String getRandomWord(){
         Random random = new Random();
         String randomWord = validWords.get(random.nextInt(validWords.size()));
         return randomWord;
     }
-
-    public Boolean isValidWord() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isValidWord'");
+    
+    // Sjekker om ordet finnes
+    public boolean isValidWord(String guessedWord) {
+        if (validWords.contains(guessedWord.toLowerCase())){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
