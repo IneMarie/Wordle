@@ -16,4 +16,5 @@ public interface WordDictionaryInterface {
  * @return True dersom ordet finnes i ordlista, False ellers
  */
   boolean isValidWord(String guessedWord);
+
 }

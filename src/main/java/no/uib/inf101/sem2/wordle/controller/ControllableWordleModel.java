@@ -36,9 +36,20 @@ public interface ControllableWordleModel {
   void removeLetter();
 
 /**
- * Henter ut alle 
+ * Henter ut alle bokstavene spilleren har skrevet
  * 
  */
   String getPlayerLetters();
 
+/**
+ * Sjekker om spillerens input resulterer i et ekte ord
+ * 
+ */
+  boolean isPlayerWordValid();
+
+/**
+ * Sjekker om ordene er gyldige og i korrekt plassering
+ * @return 
+ */
+boolean isWordValidAndCorrect();
 }

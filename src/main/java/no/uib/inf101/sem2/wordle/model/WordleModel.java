@@ -1,12 +1,31 @@
 package no.uib.inf101.sem2.wordle.model;
 
+import java.io.IOException;
+
 import no.uib.inf101.sem2.wordle.controller.ControllableWordleModel;
+import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
 import no.uib.inf101.sem2.wordle.view.ViewableWordleModel;
 
 public class WordleModel implements ViewableWordleModel, ControllableWordleModel {
   
   int wordLength = 5; // Default er 5 bokstaver
   String playerLetters = "";
+  private WordDictionary wordDictionary;
+  CorrectWord correctWord;
+
+  public WordleModel(){
+    try {
+      this.wordDictionary = new WordDictionary("ordliste/ordliste2022.txt", this.getWordLength());
+      correctWord = new CorrectWord(wordDictionary);
+
+      System.out.println("CorrectWord: " + correctWord);
+      
+      
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+  
   
   @Override
   public int getWordLength() {
@@ -42,12 +61,43 @@ public class WordleModel implements ViewableWordleModel, ControllableWordleModel
 
   @Override
   public void removeLetter() {
-    playerLetters = playerLetters.substring(0, playerLetters.length()-1);
-    
+    if (this.getPlayerLetters().length() > 0){
+      playerLetters = playerLetters.substring(0, playerLetters.length()-1);
+    }
   }
 
   public String getPlayerLetters(){
     return playerLetters;
+  }
+
+  public boolean isPlayerWordValid(){
+    String playerWord = this.getPlayerLetters();
+      
+    if (!this.canAddLetter()){ // Sjekker at alle bokstavene er fylt inn
+      if (wordDictionary.isValidWord(playerWord)){
+        System.out.println(playerWord);
+        return true;
+      } else {
+        System.out.println("Ordet finnes ikke!");
+        return false;
+      }
+    }
+    return false;
+  }
+
+
+  public boolean isWordValidAndCorrect(){
+    String playerWord = this.getPlayerLetters();
+
+    if (wordDictionary.isValidWord(playerWord)){
+      correctWord.getLetterStatus(playerWord);
+
+      if (correctWord.isWordCorrect(playerWord)){
+        return true;
+      }
+      
+    }
+    return false;
   }
 
 
@@ -57,5 +107,4 @@ public class WordleModel implements ViewableWordleModel, ControllableWordleModel
     throw new UnsupportedOperationException("Unimplemented method 'getGameState'");
   }
 
-  
 }
