@@ -20,6 +20,7 @@ public class WordDictionary implements WordDictionaryInterface {
         List<String> lines = reader.lines().toList();
         reader.close();
         
+        // Ny ordliste som kun inneholder ord med ønsket lengde
         validWords = new ArrayList<String>();
         for (String line : lines) {
             if (line.length() == wordLength){
