@@ -66,10 +66,18 @@ public class WordleModel implements ViewableWordleModel, ControllableWordleModel
     }
   }
 
+  @Override
+  public void resetInput() {
+    if (this.getPlayerLetters().length() > 0){
+      playerLetters = "";
+    }
+  }
+
   public String getPlayerLetters(){
     return playerLetters;
   }
 
+  // TODO - brukes ikke
   public boolean isPlayerWordValid(){
     String playerWord = this.getPlayerLetters();
       

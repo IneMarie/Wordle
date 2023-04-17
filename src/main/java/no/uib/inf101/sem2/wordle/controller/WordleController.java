@@ -1,8 +1,6 @@
 package no.uib.inf101.sem2.wordle.controller;
 
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-
 import no.uib.inf101.sem2.wordle.model.CorrectWord;
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
 import no.uib.inf101.sem2.wordle.view.WordleView;
@@ -35,11 +33,24 @@ public class WordleController implements java.awt.event.KeyListener{
   
   @Override
   public void keyPressed(KeyEvent e) {
+
     // Enter = ordet lagres, og sjekkes mot fasiten
     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-      System.out.println("PlayerInputs:" + model.getPlayerLetters());
-      model.isWordValidAndCorrect();
+      
+      // Ikke plass til flere
+      if (!model.canAddLetter()){
+        System.out.println("PlayerInputs:" + model.getPlayerLetters());
+        if (model.isWordValidAndCorrect()){
+          System.out.println("Ordet er korrekt :)");
+        } else {
+          System.out.println("Ordet er feil :(");
+        }
+        model.resetInput();
+      } else {
+        System.out.println("Mangler bokstaver");
+      }
     } 
+
     // Backspace = Sletter den siste bokstaven man skrev inn
     else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
         model.removeLetter();

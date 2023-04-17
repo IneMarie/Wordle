@@ -36,6 +36,12 @@ public interface ControllableWordleModel {
   void removeLetter();
 
 /**
+ * Fjerner alle tidligere inputs, slik at man starter med en tom string
+ * 
+ */
+  void resetInput();
+
+/**
  * Henter ut alle bokstavene spilleren har skrevet
  * 
  */

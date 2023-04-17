@@ -31,6 +31,7 @@ public class CorrectWord {
     int playerWordLen = playerWord.length();
     LetterStatus[] status = new LetterStatus[playerWordLen];
 
+    // TODO - hint funksjon kan kanskje bruke denne?
     String remainingLettersInCorrectWord = "";
 
     for (int i = 0; i < playerWordLen; i++){
@@ -50,10 +51,14 @@ public class CorrectWord {
       char playerLetter = playerWord.charAt(i);
 
       if (status[i] != LetterStatus.LETTER_CORRECT){
+
+        // Sjekker om bokstaven finnes i ordet
         if (remainingLettersInCorrectWord.contains(Character.toString(playerLetter))) {
-          // fant bokstav på feil posisjon
+
           status[i] = LetterStatus.LETTER_EXISTS;
-          // vi må fjerne bokstaven fra remaining
+
+          // Fjerner første tilfelle av bokstaven fra remainingLettersInCorrectWord
+          // Viktig dersom ordet har flere like bokstaver (Feks blass)
           int pos = remainingLettersInCorrectWord.indexOf(playerLetter);
           String remainingBefore = remainingLettersInCorrectWord.substring(0, pos);
           String remainingAfter = remainingLettersInCorrectWord.substring(pos + 1);
