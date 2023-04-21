@@ -4,9 +4,9 @@ import java.io.IOException;
 
 import no.uib.inf101.sem2.wordle.controller.ControllableWordleModel;
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
-import no.uib.inf101.sem2.wordle.view.ViewableWordleModel;
 
-public class WordleModel implements ViewableWordleModel, ControllableWordleModel {
+
+public class WordleModel implements ControllableWordleModel {
   
   int wordLength = 5; // Default er 5 bokstaver
   String playerLetters = "";

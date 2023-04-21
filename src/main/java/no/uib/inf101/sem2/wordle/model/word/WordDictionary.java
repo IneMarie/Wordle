@@ -29,7 +29,7 @@ public class WordDictionary implements WordDictionaryInterface {
         }
     }
     
-    // Henter ut random ord fra den filtrerte lista
+    @Override
     public String getRandomWord(){
         Random random = new Random();
         String randomWord = validWords.get(random.nextInt(validWords.size()));
