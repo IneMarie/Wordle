@@ -1,11 +1,12 @@
 package no.uib.inf101.sem2.wordle.controller;
 
+import no.uib.inf101.sem2.wordle.grid.GridDimension;
 import no.uib.inf101.sem2.wordle.model.GameState;
 
 public interface ControllableWordleModel {
     
 /**
- * Brukes for å finne ut om spillet er ACTIVE_GAME eller GAME_OVER
+ * Brukes for å finne ut hvilken status spillet er o
  * @return statusen på gameState
  */
   GameState getGameState();
@@ -16,6 +17,18 @@ public interface ControllableWordleModel {
  * @return lengden på ordet
  */
   int getWordLength();
+
+/**
+ * Setter lengden på ordet
+ * 
+ */
+  void setWordLength(int length);
+
+/** 
+ * Gets the dimension of the grid. 
+ * @return GridDimension
+ */
+  GridDimension getDimension();
 
 /**
  * Sjekker om det er plass til flere bokstaver

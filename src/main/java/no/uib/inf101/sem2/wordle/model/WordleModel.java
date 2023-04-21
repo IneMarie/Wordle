@@ -3,20 +3,27 @@ package no.uib.inf101.sem2.wordle.model;
 import java.io.IOException;
 
 import no.uib.inf101.sem2.wordle.controller.ControllableWordleModel;
+import no.uib.inf101.sem2.wordle.grid.GridDimension;
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
 
 
 public class WordleModel implements ControllableWordleModel {
-  
+  GameState gameState;
   int wordLength = 5; // Default er 5 bokstaver
+  
+
   String playerLetters = "";
   private WordDictionary wordDictionary;
   CorrectWord correctWord;
 
   public WordleModel(){
+    // Initierer gameState til HOME_SCREEN
+    this.gameState = GameState.HOME_SCREEN;
+
     try {
       this.wordDictionary = new WordDictionary("ordliste/ordliste2022.txt", this.getWordLength());
       correctWord = new CorrectWord(wordDictionary);
+
 
       System.out.println("CorrectWord: " + correctWord);
       
@@ -26,10 +33,19 @@ public class WordleModel implements ControllableWordleModel {
     }
   }
   
+  @Override
+  public void setWordLength(int length) {
+    wordLength = length;
+  }
   
   @Override
   public int getWordLength() {
     return wordLength;
+  }
+
+  // TODO
+  public GridDimension getDimension() {
+    return null;
   }
   
   // Sjekker om det er plass
@@ -111,8 +127,7 @@ public class WordleModel implements ControllableWordleModel {
 
   @Override
   public GameState getGameState() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getGameState'");
+    return gameState;
   }
 
 }

@@ -13,7 +13,6 @@ public class WordleController implements java.awt.event.KeyListener{
   
   
   public WordleController(WordleView view, ControllableWordleModel model){
-    this.model = model;
     this.view = view;
     
     view.addKeyListener(this);

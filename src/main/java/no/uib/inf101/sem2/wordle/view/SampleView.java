@@ -43,10 +43,7 @@ public class SampleView extends JPanel {
     g2.draw(rect);
     Inf101Graphics.drawCenteredString(g2, "Semesteroppgave 2", rect);
     
-    // Draw the INF101 logo in the left side of the rectangle
-    BufferedImage logo = Inf101Graphics.loadImageFromResources("/inf101.png");
-    double scale = (rect.getHeight() - 1)/logo.getHeight();
-    Inf101Graphics.drawImage(g2, logo, rect.getX() + 1, rect.getY() + 1, scale);
+
   }
 
   private Rectangle2D getRectangle() {

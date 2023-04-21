@@ -30,7 +30,7 @@ public class DefaultColorTheme implements ColorTheme{
 
   @Override
   public Font getDefaultFont() {
-    Font font = new Font("Neue Helvetica", Font.PLAIN, 12);
+    Font font = new Font("Neue Helvetica", Font.PLAIN, 16);
     return font;
   }
 
