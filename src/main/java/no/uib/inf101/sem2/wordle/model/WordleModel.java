@@ -1,6 +1,7 @@
 package no.uib.inf101.sem2.wordle.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import no.uib.inf101.sem2.wordle.controller.ControllableWordleModel;
 import no.uib.inf101.sem2.wordle.grid.GridDimension;
@@ -13,6 +14,8 @@ public class WordleModel implements ControllableWordleModel {
   
 
   String playerLetters = "";
+  ArrayList<String> playerWords = new ArrayList<String>();
+
   private WordDictionary wordDictionary;
   CorrectWord correctWord;
 
@@ -122,6 +125,10 @@ public class WordleModel implements ControllableWordleModel {
       
     }
     return false;
+  }
+
+  public void addPlayerWords(){
+    playerWords.add(getPlayerLetters());
   }
 
 

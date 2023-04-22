@@ -3,6 +3,7 @@ package no.uib.inf101.sem2.wordle.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -36,7 +37,7 @@ public class WordleView extends JPanel {
     int height = 500;
     this.setPreferredSize(new Dimension(width, height));
     this.colorTheme = new DefaultColorTheme();
-    this.homeScreen = new HomeScreen();
+   // TODO this.homeScreen = new HomeScreen(model);
 
  
     Color backgroundColor = colorTheme.getBackgroundColor();
@@ -68,8 +69,19 @@ public class WordleView extends JPanel {
     g2.setColor(colorTheme.getOutlineColor());
     g2.drawLine(0, 50, getWidth(), 50);
     
-    // Meny knapp
-    // ≡
+    // Meny knapp TODO
+    JButton b = new JButton("≡");
+    b.setBounds(10, 10, 30, 30);  
+    this.add(b);  
+    this.setLayout(null);  
+    this.setVisible(true);
+    
+    // Kan trykke på knappene
+    b.addActionListener((e) -> {
+      // TODO HOMESCREEEEN
+      System.out.println("TILBAKE TIL HOMESCREEN");
+    });
+
     
   }
 
@@ -78,7 +90,6 @@ public class WordleView extends JPanel {
   private void drawGrid(Graphics2D g2){
    
   }
-
 
   private void drawKeyboard(Graphics2D g2){
    //11x3

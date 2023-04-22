@@ -33,19 +33,7 @@ public class WordleController implements java.awt.event.KeyListener{
 
     // Enter = ordet lagres, og sjekkes mot fasiten
     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-      
-      // Ikke plass til flere
-      if (!model.canAddLetter()){
-        System.out.println("PlayerInputs:" + model.getPlayerLetters());
-        if (model.isWordValidAndCorrect()){
-          System.out.println("Ordet er korrekt :)");
-        } else {
-          System.out.println("Ordet er feil :(");
-        }
-        model.resetInput();
-      } else {
-        System.out.println("Mangler bokstaver");
-      }
+      checkInput();
     } 
 
     // Backspace = Sletter den siste bokstaven man skrev inn
@@ -54,6 +42,22 @@ public class WordleController implements java.awt.event.KeyListener{
         System.out.println(model.getPlayerLetters());
     }
   }
+
+  public void checkInput(){
+     // Ikke plass til flere
+     if (!model.canAddLetter()){
+      // TODO model.addPlayerWords();
+      System.out.println("PlayerInputs:" + model.getPlayerLetters());
+      if (model.isWordValidAndCorrect()){
+        System.out.println("Ordet er korrekt :)");
+      } else {
+        System.out.println("Ordet er feil :(");
+      }
+      model.resetInput();
+    } else {
+      System.out.println("Mangler bokstaver");
+    }
+  } 
   
   @Override
   public void keyReleased(KeyEvent e) {

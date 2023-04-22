@@ -19,7 +19,7 @@ Wordle er et tilpasningsdyktig spill, og planen er å utvide spillet til å inkl
 - hint
 
 ## Video
-TODO
+[Dropbox link](https://www.dropbox.com/sh/5ofy1wtypdu6dbs/AADAKn8U6OtQU4fM4GgBFkipa?dl=0)
 
 
 ## Kilder
