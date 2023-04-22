@@ -2,8 +2,10 @@ package no.uib.inf101.sem2.wordle.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.geom.Line2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -11,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.geom.Rectangle2D;
 import java.util.Objects;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import no.uib.inf101.sem2.wordle.grid.CellPosition;
@@ -22,23 +25,24 @@ import no.uib.inf101.sem2.wordle.model.WordleModel;
 public class WordleView extends JPanel {
   private WordleModel model;
   private ColorTheme colorTheme;
+  private HomeScreen homeScreen;
   
   public WordleView() {
     this.setFocusable(true);
+
     
     
     int width = 400;
     int height = 500;
     this.setPreferredSize(new Dimension(width, height));
     this.colorTheme = new DefaultColorTheme();
-    
-    
-    this.colorTheme = new DefaultColorTheme();
-    
-    // Setter bakgrunnsfargen
+    this.homeScreen = new HomeScreen();
+
+ 
     Color backgroundColor = colorTheme.getBackgroundColor();
     this.setBackground(backgroundColor);
-    
+    this.setLayout(new GridLayout(1, 1));
+    // this.add(homeScreen); // FJern linja 
   }
   
   @Override
@@ -47,9 +51,9 @@ public class WordleView extends JPanel {
     Graphics2D g2 = (Graphics2D) g;
     
     drawHeader(g2);
-    // if (model.getGameState() == GameState.HOME_SCREEN){
-      drawHomeScreen(g2);
-    // }
+    /*if (model.getGameState() == GameState.HOME_SCREEN){
+      System.out.println("ETST");
+    } */
     drawGrid(g2);
   }
   
@@ -69,44 +73,7 @@ public class WordleView extends JPanel {
     
   }
 
-  private void drawHomeScreen(Graphics2D g2){
-    g2.setColor(colorTheme.getTextColor());
-    g2.setFont(colorTheme.getDefaultFont());
 
-    double recWidth = getWidth() / 4;
-
-    // 4 bokstaver
-    Rectangle2D rec4 = new Rectangle2D.Double(150, 130, recWidth, 40);
-    g2.draw(rec4);
-    Inf101Graphics.drawCenteredString(g2, "4 bokstaver", rec4);
-
-    // 5 bokstaver
-    Rectangle2D rec5 = new Rectangle2D.Double(150, 190, recWidth, 40);
-    g2.draw(rec5);
-    Inf101Graphics.drawCenteredString(g2, "5 bokstaver", rec5);
-
-    // 6 bokstaver
-    Rectangle2D rec6 = new Rectangle2D.Double(150, 250, recWidth, 40);
-    g2.draw(rec6);
-    Inf101Graphics.drawCenteredString(g2, "6 bokstaver", rec6);
-    
-    // 7 bokstaver
-    Rectangle2D rec7 = new Rectangle2D.Double(150, 310, recWidth, 40);
-    g2.draw(rec7);
-    Inf101Graphics.drawCenteredString(g2, "7 bokstaver", rec7);
-
-    // 8 bokstaver
-    Rectangle2D rec8 = new Rectangle2D.Double(150, 370, recWidth,40);
-    g2.draw(rec8);
-    Inf101Graphics.drawCenteredString(g2, "8 bokstaver", rec8);
-
-    // model.setWordLength();
-
-  }
-
-  
-  
-  
   
   private void drawGrid(Graphics2D g2){
    

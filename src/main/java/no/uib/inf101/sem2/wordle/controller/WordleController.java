@@ -15,8 +15,6 @@ public class WordleController implements java.awt.event.KeyListener{
   public WordleController(WordleView view, ControllableWordleModel model){
     this.view = view;
     
-    view.addKeyListener(this);
-    
   }
   
   @Override
