@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class KeyboardView extends JPanel{
   int recWidth;
@@ -31,6 +33,14 @@ public class KeyboardView extends JPanel{
     for (String label : row1) {
       keys[index] = new JButton(label);
       keys[index].setPreferredSize(new Dimension(30, 30));
+      
+      // Knappen kan klikkes
+      keys[index].addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+          System.out.println(label);
+        }  
+      });
+      
       this.add(keys[index]);
       index++;
     }
@@ -38,6 +48,14 @@ public class KeyboardView extends JPanel{
     for (String label : row2) {
       keys[index] = new JButton(label);
       keys[index].setPreferredSize(new Dimension(30, 30));
+      
+      // Knappen kan klikkes
+      keys[index].addActionListener(new ActionListener(){  
+        public void actionPerformed(ActionEvent e){  
+          System.out.println(label);
+        }  
+      });
+      
       this.add(keys[index]);
       index++;
     }
@@ -47,14 +65,24 @@ public class KeyboardView extends JPanel{
       if (i == 0 || i == row3.length - 1) {
         // Special characters er dobbel så lange som en vanlig knapp
         keys[index] = new JButton(row3[i]);
-        keys[index].setPreferredSize(new Dimension(60, 30));
+        keys[index].setPreferredSize(new Dimension(70, 40));
       } else {
         // Vanlig knapp
         keys[index] = new JButton(row3[i]);
         keys[index].setPreferredSize(new Dimension(30, 30));
       }
+      
+      keys[index].addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          JButton button = (JButton) e.getSource();
+          String letter = button.getText();
+          System.out.print(letter);
+        }
+      });
+      
       this.add(keys[index]);
       index++;
     }
+    
   }
 }
