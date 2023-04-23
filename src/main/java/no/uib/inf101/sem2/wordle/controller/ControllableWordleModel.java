@@ -61,7 +61,13 @@ public interface ControllableWordleModel {
 
 /**
  * Sjekker om ordene er gyldige og i korrekt plassering
- * @return 
+ * @return bool
  */
 boolean isWordValidAndCorrect();
+
+/**
+ * Legger til ferdig player input 
+ * 
+ */
+void addPlayerWords();
 }

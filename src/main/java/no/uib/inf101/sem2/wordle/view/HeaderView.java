@@ -27,7 +27,6 @@ public class HeaderView extends JPanel{
     this.colorTheme = new DefaultColorTheme();
     this.model = model;
     this.controller = controller;
-    this.setBackground(Color.yellow);
   }
 
   @Override

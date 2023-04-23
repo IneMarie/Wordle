@@ -2,6 +2,7 @@ package no.uib.inf101.sem2.wordle.controller;
 
 import java.awt.event.KeyEvent;
 import no.uib.inf101.sem2.wordle.model.CorrectWord;
+import no.uib.inf101.sem2.wordle.model.WordleModel;
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
 import no.uib.inf101.sem2.wordle.view.WordleView;
 
@@ -53,11 +54,17 @@ public class WordleController implements java.awt.event.KeyListener{
       } else {
         System.out.println("Ordet er feil :(");
       }
+      model.addPlayerWords();
       model.resetInput();
+
     } else {
       System.out.println("Mangler bokstaver");
     }
-  } 
+  }
+
+  public void updateLetterGrid(){
+    view.updateLetterGrid();
+  }
   
   @Override
   public void keyReleased(KeyEvent e) {

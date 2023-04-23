@@ -31,6 +31,8 @@ public class WordleView extends JPanel {
   private GameView gameView;
   private KeyboardView keyboardView;
   private WordleController controller;
+  private BorderViewLeft BorderViewLeft;
+  private BorderViewRight BorderViewRight;
   
   public WordleView(WordleModel model) {
     this.setFocusable(true);
@@ -40,6 +42,8 @@ public class WordleView extends JPanel {
     homeScreen = new HomeScreen(model, controller);
     gameView = new GameView(model, controller);
     keyboardView = new KeyboardView(model, controller);
+    BorderViewLeft = new BorderViewLeft();
+    BorderViewRight = new BorderViewRight();
 
     int width = 400;
     int height = 500;
@@ -54,6 +58,12 @@ public class WordleView extends JPanel {
     this.add(headerView, BorderLayout.PAGE_START);
     this.add(gameView, BorderLayout.CENTER);
     this.add(keyboardView, BorderLayout.PAGE_END);
-    // this.add(homeScreen); // FJern linja 
+    this.add(BorderViewLeft, BorderLayout.LINE_START);
+    this.add(BorderViewRight, BorderLayout.LINE_END);
+ 
+  }
+
+  public void updateLetterGrid(){
+    gameView.updateLetterGrid();
   }
 }

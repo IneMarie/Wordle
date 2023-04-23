@@ -28,7 +28,6 @@ public class KeyboardView extends JPanel{
     this.colorTheme = new DefaultColorTheme();
     this.model = model;
     this.controller = controller;
-    this.setBackground(Color.RED);
     
     String[] row1 = {"Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Å"};
     String[] row2 = {"A", "S", "D", "F", "G", "H", "J", "K", "L", "Ø", "Æ"};
@@ -47,6 +46,7 @@ public class KeyboardView extends JPanel{
           //System.out.println(letter);
           char c = letter.charAt(0);   
           model.addLetter(c);
+          controller.updateLetterGrid();
           System.out.println("TYPED:" + c);
         }  
       });
@@ -66,6 +66,7 @@ public class KeyboardView extends JPanel{
           //System.out.println(letter);
           char c = letter.charAt(0);   
           model.addLetter(c);
+          controller.updateLetterGrid();
           System.out.println("TYPED:" + c);
         }  
       });
@@ -94,12 +95,15 @@ public class KeyboardView extends JPanel{
           String letter = button.getText();
           if (letter == "↵"){
             controller.checkInput();
+            controller.updateLetterGrid();
           } else if (letter == "⌫") {
             model.removeLetter();
+            controller.updateLetterGrid();
             System.out.println(model.getPlayerLetters());
           } else {
             char c = letter.charAt(0);
             model.addLetter(c);
+            controller.updateLetterGrid();
             System.out.println("TYPED:" + c);
           }
         }

@@ -20,7 +20,7 @@ public class WordleModel implements ControllableWordleModel {
 
   public WordleModel(){
     // Initierer gameState til HOME_SCREEN
-    this.gameState = GameState.HOME_SCREEN;
+    //this.gameState = GameState.HOME_SCREEN;
 
     try {
       this.wordDictionary = new WordDictionary("ordliste/ordliste2022.txt", this.getWordLength());
@@ -69,7 +69,7 @@ public class WordleModel implements ControllableWordleModel {
     c = Character.toLowerCase(c);
     if (canAddLetter() && isValidLetter(c)){
       playerLetters += c;
-      System.out.println("La inn " + c + ", order er nå: " + playerLetters);
+      System.out.println("La inn " + c + ", ordet er nå: " + playerLetters);
     }
   }
 
@@ -124,12 +124,22 @@ public class WordleModel implements ControllableWordleModel {
 
   public void addPlayerWords(){
     playerWords.add(getPlayerLetters());
+    System.out.println("La inn " +playerLetters);
+  }
+
+
+  public ArrayList<String> getPlayerWords(){
+    return playerWords;
   }
 
 
   @Override
   public GameState getGameState() {
     return gameState;
+  }
+
+  public int getPlayerWordRowCount(){
+    return playerWords.size();
   }
 
 }
