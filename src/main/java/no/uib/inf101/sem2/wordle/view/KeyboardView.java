@@ -37,42 +37,11 @@ public class KeyboardView extends JPanel{
     keys = new JButton[row1.length + row2.length + row3.length];
     
     for (String letter : row1) {
-      keys[index] = new JButton(letter);
-      keys[index].setPreferredSize(new Dimension(30, 30));
-      
-      // Knappen kan klikkes
-      keys[index].addActionListener(new ActionListener(){  
-        public void actionPerformed(ActionEvent e){  
-          //System.out.println(letter);
-          char c = letter.charAt(0);   
-          model.addLetter(c);
-          controller.updateLetterGrid();
-          System.out.println("TYPED:" + c);
-        }  
-      });
-      
-      this.add(keys[index]);
-      index++;
+      row1And2Common(keys, letter, index);
     }
     
-    // TODO forbedre koden, gjenbruk
     for (String letter : row2) {
-      keys[index] = new JButton(letter);
-      keys[index].setPreferredSize(new Dimension(30, 30));
-      
-      // Knappen kan klikkes
-      keys[index].addActionListener(new ActionListener(){  
-        public void actionPerformed(ActionEvent e){  
-          //System.out.println(letter);
-          char c = letter.charAt(0);   
-          model.addLetter(c);
-          controller.updateLetterGrid();
-          System.out.println("TYPED:" + c);
-        }  
-      });
-      
-      this.add(keys[index]);
-      index++;
+      row1And2Common(keys, letter, index);
     }
     
     for (int i = 0; i < row3.length; i++) {
@@ -91,7 +60,7 @@ public class KeyboardView extends JPanel{
       keys[index].addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           JButton button = (JButton) e.getSource();
-
+          
           String letter = button.getText();
           if (letter == "↵"){
             controller.checkInput();
@@ -101,17 +70,35 @@ public class KeyboardView extends JPanel{
             controller.updateLetterGrid();
             System.out.println(model.getPlayerLetters());
           } else {
-            char c = letter.charAt(0);
-            model.addLetter(c);
-            controller.updateLetterGrid();
-            System.out.println("TYPED:" + c);
+            actionPerformedCommon(letter);
           }
         }
       });
-      
       this.add(keys[index]);
       index++;
     }
+  }
+  
+  // Kode som er felles for alle rader
+  public void actionPerformedCommon(String letter){
+    char c = letter.charAt(0);
+    model.addLetter(c);
+    controller.updateLetterGrid();
+    System.out.println("TYPED:" + c);
+  }
+
+  // Kode som kun er felles for rad 1 og 2
+  public void row1And2Common(JButton[] keys, String letter, int index){
+    keys[index] = new JButton(letter);
+    keys[index].setPreferredSize(new Dimension(30, 30));
     
+    // Knappen kan klikkes
+    keys[index].addActionListener(new ActionListener(){  
+      public void actionPerformed(ActionEvent e){  
+        actionPerformedCommon(letter);
+      }  
+    });
+    this.add(keys[index]);
+    index++;
   }
 }
