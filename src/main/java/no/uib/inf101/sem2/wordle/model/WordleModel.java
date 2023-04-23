@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import no.uib.inf101.sem2.wordle.controller.ControllableWordleModel;
-import no.uib.inf101.sem2.wordle.grid.GridDimension;
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
 
 
@@ -45,11 +44,6 @@ public class WordleModel implements ControllableWordleModel {
   public int getWordLength() {
     return wordLength;
   }
-
-  // TODO
-  public GridDimension getDimension() {
-    return null;
-  }
   
   // Sjekker om det er plass
   public boolean canAddLetter() {
@@ -63,7 +57,6 @@ public class WordleModel implements ControllableWordleModel {
   // Sjekker om det er gyldig bokstav
   private boolean isValidLetter(char c){
     String validLetters = "abcdefghijklmnopqrstuvwxyzæøå";
-
     if (validLetters.contains(Character.toString(c))){
       return true;
     } else {
@@ -73,8 +66,10 @@ public class WordleModel implements ControllableWordleModel {
 
   @Override
   public void addLetter(char c) {
+    c = Character.toLowerCase(c);
     if (canAddLetter() && isValidLetter(c)){
       playerLetters += c;
+      System.out.println("La inn " + c + ", order er nå: " + playerLetters);
     }
   }
 

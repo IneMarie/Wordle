@@ -1,6 +1,5 @@
 package no.uib.inf101.sem2.wordle.controller;
 
-import no.uib.inf101.sem2.wordle.grid.GridDimension;
 import no.uib.inf101.sem2.wordle.model.GameState;
 
 public interface ControllableWordleModel {
@@ -23,12 +22,6 @@ public interface ControllableWordleModel {
  * 
  */
   void setWordLength(int length);
-
-/** 
- * Gets the dimension of the grid. 
- * @return GridDimension
- */
-  GridDimension getDimension();
 
 /**
  * Sjekker om det er plass til flere bokstaver

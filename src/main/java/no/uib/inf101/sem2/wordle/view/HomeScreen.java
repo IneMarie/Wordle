@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import no.uib.inf101.sem2.wordle.controller.WordleController;
 import no.uib.inf101.sem2.wordle.model.WordleModel;
 
 public class HomeScreen extends JPanel{
@@ -14,7 +15,7 @@ public class HomeScreen extends JPanel{
   private ColorTheme colorTheme;
   private WordleModel model;
   
-  public HomeScreen(WordleModel model){
+  public HomeScreen(WordleModel model, WordleController controller){
     this.setFocusable(true);
     // g2.setColor(colorTheme.getTextColor());
     // g2.setFont(colorTheme.getDefaultFont());

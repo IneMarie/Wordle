@@ -23,7 +23,7 @@ public class KeyboardView extends JPanel{
     this.setFocusable(true);
     
     int width = 400;
-    int height = 500;
+    int height = 120;
     this.setPreferredSize(new Dimension(width, height));
     this.colorTheme = new DefaultColorTheme();
     this.model = model;
@@ -55,6 +55,7 @@ public class KeyboardView extends JPanel{
       index++;
     }
     
+    // TODO forbedre koden, gjenbruk
     for (String letter : row2) {
       keys[index] = new JButton(letter);
       keys[index].setPreferredSize(new Dimension(30, 30));

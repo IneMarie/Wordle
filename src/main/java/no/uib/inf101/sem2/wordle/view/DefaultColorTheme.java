@@ -40,9 +40,18 @@ public class DefaultColorTheme implements ColorTheme{
   }
 
   @Override
-  public Color getLetterColor(Boolean status) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getLetterColor'");
+  public Color getColorCorrect() {
+    return Color.green;
+  }
+
+  @Override
+  public Color getColorExists() {
+    return Color.orange;
+  }
+
+  @Override
+  public Color getColorWrong() {
+    return Color.darkGray;
   }
   
 }

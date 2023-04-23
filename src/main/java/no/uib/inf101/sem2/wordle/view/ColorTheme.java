@@ -20,11 +20,23 @@ public interface ColorTheme {
   Color getOutlineColor();
 
 /**
- * Brukes for å hente fargen til letterstatus
- * @param boolean 
- * @return Farge til bokstaver
+ * Brukes for å hente fargen til korrekte bokstaver
+ * @return Farge til rett bokstav
  */
-  Color getLetterColor(Boolean status);
+  Color getColorCorrect();
+
+/**
+ * Brukes for å hente fargen til bokstaver på feil plass
+ * @return Farge til eksiterende bokstav
+ */
+  Color getColorExists();
+
+
+/**
+ * Brukes for å hente fargen til feil bokstaver
+ * @return Farge til feil bokstav
+ */
+Color getColorWrong();
 
 /**
  * Brukes for å hente en gjennomsiktig farge som kan brukes i feks gameover screens
