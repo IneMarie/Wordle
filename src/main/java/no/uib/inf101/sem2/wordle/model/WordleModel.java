@@ -14,13 +14,19 @@ public class WordleModel implements ControllableWordleModel {
 
   String playerLetters = "";
   ArrayList<String> playerWords = new ArrayList<String>();
+  String usedLetters = "";
 
   private WordDictionary wordDictionary;
   CorrectWord correctWord;
+  
+
+  public CorrectWord getCorrectWord() {
+    return correctWord;
+  }
 
   public WordleModel(){
-    // Initierer gameState til HOME_SCREEN
-    //this.gameState = GameState.HOME_SCREEN;
+    // Initierer gameState til active
+    this.gameState = GameState.ACTIVE_GAME;
 
     try {
       this.wordDictionary = new WordDictionary("ordliste/ordliste2022.txt", this.getWordLength());
@@ -123,8 +129,9 @@ public class WordleModel implements ControllableWordleModel {
   }
 
   public void addPlayerWords(){
-    playerWords.add(getPlayerLetters());
-    System.out.println("La inn " +playerLetters);
+    playerWords.add(playerLetters);
+    usedLetters += playerLetters;
+    System.out.println("La inn " + playerLetters);
   }
 
 
@@ -142,4 +149,10 @@ public class WordleModel implements ControllableWordleModel {
     return playerWords.size();
   }
 
+  public boolean isLetterUsed(char c){
+    if (usedLetters.indexOf(c) >= 0){
+      return true;
+    }
+    return false;
+  }
 }

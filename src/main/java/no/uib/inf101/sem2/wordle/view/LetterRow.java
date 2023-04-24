@@ -19,6 +19,7 @@ public class LetterRow {
 
   public void setLetterAndStatus(int col, char c, LetterStatus status){
     letterLabels[col].setLetterAndStatus(c, status);
+    //System.out.println(status + " " + col);
   }
 
   public void addLettersToPanel(JPanel panel){
@@ -27,7 +28,7 @@ public class LetterRow {
     }
   }
 
-  public void setText(String playerLetters){
+  public void setText(String playerLetters, LetterStatus[] letterStatuses){
     for (int i = 0; i < letterLabels.length; i++){
       char c;
       if (playerLetters.length() > i){
@@ -35,7 +36,12 @@ public class LetterRow {
       } else {
         c = ' ';
       }
-      setLetterAndStatus(i, c, LetterStatus.LETTER_EMPTY);
+      LetterStatus letterStatus = LetterStatus.LETTER_EMPTY; // Default
+      if (letterStatuses != null){
+        letterStatus = letterStatuses[i];
+      }
+      
+      setLetterAndStatus(i, c, letterStatus);
     }
   }
 }

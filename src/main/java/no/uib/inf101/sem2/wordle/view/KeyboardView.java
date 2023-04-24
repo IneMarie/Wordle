@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import no.uib.inf101.sem2.wordle.controller.WordleController;
+import no.uib.inf101.sem2.wordle.model.LetterStatus;
 import no.uib.inf101.sem2.wordle.model.WordleModel;
 
 import java.awt.Color;
@@ -15,11 +16,13 @@ import java.awt.event.ActionListener;
 public class KeyboardView extends JPanel{
   int recWidth;
   private ColorTheme colorTheme;
-  private JButton[] keys;
+  private KeyboardButton[] keys;
   private WordleModel model;
   private WordleController controller;
+  private GameView gameView;
+  int index = 0;
   
-  public KeyboardView(WordleModel model, WordleController controller){
+  public KeyboardView(WordleModel model, WordleController controller, GameView gameView){
     this.setFocusable(true);
     
     int width = 400;
@@ -27,78 +30,53 @@ public class KeyboardView extends JPanel{
     this.setPreferredSize(new Dimension(width, height));
     this.colorTheme = new DefaultColorTheme();
     this.model = model;
+    this.gameView = gameView;
     this.controller = controller;
     
-    String[] row1 = {"Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Å"};
-    String[] row2 = {"A", "S", "D", "F", "G", "H", "J", "K", "L", "Ø", "Æ"};
-    String[] row3 = {"↵", "Z", "X", "C", "V", "B", "N", "M", "⌫"};
-    int index = 0;
+    String[] row1 = {"q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"};
+    String[] row2 = {"a", "s", "d", "f", "g", "h", "j", "k", "l", "ø", "æ"};
+    String[] row3 = {"z", "x", "c", "v", "b", "n", "m"};
     
-    keys = new JButton[row1.length + row2.length + row3.length];
     
-    for (String letter : row1) {
-      row1And2Common(keys, letter, index);
-    }
+    keys = new KeyboardButton[row1.length + row2.length + row3.length];
     
-    for (String letter : row2) {
-      row1And2Common(keys, letter, index);
-    }
-    
-    for (int i = 0; i < row3.length; i++) {
-      // Første og siste index i row3 har special characters
-      if (i == 0 || i == row3.length - 1) {
-        // Special characters er dobbel så lange som en vanlig knapp
-        keys[index] = new JButton(row3[i]);
-        keys[index].setPreferredSize(new Dimension(70, 35));
-      } else {
-        // Vanlig knapp
-        keys[index] = new JButton(row3[i]);
-        keys[index].setPreferredSize(new Dimension(30, 30));
-      }
-      
-      // Legger på actionlistener
-      keys[index].addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-          JButton button = (JButton) e.getSource();
-          
-          String letter = button.getText();
-          if (letter == "↵"){
-            controller.checkInput();
-            controller.updateLetterGrid();
-          } else if (letter == "⌫") {
-            model.removeLetter();
-            controller.updateLetterGrid();
-            System.out.println(model.getPlayerLetters());
-          } else {
-            actionPerformedCommon(letter);
-          }
-        }
-      });
-      this.add(keys[index]);
-      index++;
-    }
+    createKeyRow(row1);
+    createKeyRow(row2);
+    this.add(new KeyboardEnter(colorTheme, controller));
+    createKeyRow(row3);
+    this.add(new KeyboardBackspace(colorTheme, controller));
   }
   
-  // Kode som er felles for alle rader
-  public void actionPerformedCommon(String letter){
-    char c = letter.charAt(0);
-    model.addLetter(c);
-    controller.updateLetterGrid();
-    System.out.println("TYPED:" + c);
-  }
-
-  // Kode som kun er felles for rad 1 og 2
-  public void row1And2Common(JButton[] keys, String letter, int index){
-    keys[index] = new JButton(letter);
-    keys[index].setPreferredSize(new Dimension(30, 30));
-    
-    // Knappen kan klikkes
-    keys[index].addActionListener(new ActionListener(){  
-      public void actionPerformed(ActionEvent e){  
-        actionPerformedCommon(letter);
-      }  
-    });
+  public void createAndAddKey(String letter){
+    keys[index] = new KeyboardButton(letter.charAt(0), colorTheme, controller);
     this.add(keys[index]);
     index++;
   }
+  
+  public void createKeyRow(String[] row){
+    for (String letter : row) {
+      createAndAddKey(letter);
+    }
+  }
+  
+  public void updateKeyboard(){
+    for (KeyboardButton key : keys){
+      char c = key.getButtonLetter();
+      //System.out.println(c + " " + model.isLetterUsed(c));
+      if (model.isLetterUsed(c)){
+        if (model.getCorrectWord().containsLetter(c)){
+          if (gameView.isLetterCorrect(c)) {
+            key.setStatus(LetterStatus.LETTER_CORRECT);
+          } else {
+            key.setStatus(LetterStatus.LETTER_EXISTS);
+          }
+        } else {
+          key.setStatus(LetterStatus.LETTER_WRONG);
+        }
+      } else {
+        key.setStatus(LetterStatus.LETTER_EMPTY);
+      }
+    }
+  }
+  
 }

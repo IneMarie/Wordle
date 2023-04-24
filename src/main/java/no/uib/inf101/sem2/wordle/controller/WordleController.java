@@ -45,18 +45,17 @@ public class WordleController implements java.awt.event.KeyListener{
   }
 
   public void checkInput(){
-     // Ikke plass til flere
      if (!model.canAddLetter()){
-      // TODO model.addPlayerWords();
       System.out.println("PlayerInputs:" + model.getPlayerLetters());
-      if (model.isWordValidAndCorrect()){
-        System.out.println("Ordet er korrekt :)");
-      } else {
-        System.out.println("Ordet er feil :(");
+      if (model.isPlayerWordValid()){
+        model.addPlayerWords();
+        model.resetInput();
+        if (model.isWordValidAndCorrect()){
+          System.out.println("Ordet er korrekt :)");
+        } else {
+          System.out.println("Ordet er feil :(");
+        }
       }
-      model.addPlayerWords();
-      model.resetInput();
-
     } else {
       System.out.println("Mangler bokstaver");
     }
@@ -64,9 +63,19 @@ public class WordleController implements java.awt.event.KeyListener{
 
   public void updateLetterGrid(){
     view.updateLetterGrid();
+    
+  }
+
+  public void addKey(char c){
+    model.addLetter(c);
+    updateLetterGrid();
   }
   
   @Override
   public void keyReleased(KeyEvent e) {
+  }
+
+  public void removeLetter() {
+    model.removeLetter();
   }
 }

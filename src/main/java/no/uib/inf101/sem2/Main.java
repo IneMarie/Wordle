@@ -1,6 +1,7 @@
 package no.uib.inf101.sem2;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 
 import no.uib.inf101.sem2.wordle.controller.WordleController;
 import no.uib.inf101.sem2.wordle.model.WordleModel;
@@ -12,6 +13,12 @@ import no.uib.inf101.sem2.wordle.view.WordleView;
 
 public class Main {
   public static void main(String[] args) {
+    try {
+      UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
+      
+   } catch (Exception e) {
+              e.printStackTrace();
+   }
     createFrame();
     
   }

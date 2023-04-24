@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import no.uib.inf101.sem2.wordle.controller.WordleController;
+import no.uib.inf101.sem2.wordle.model.CorrectWord;
+import no.uib.inf101.sem2.wordle.model.LetterStatus;
 import no.uib.inf101.sem2.wordle.model.WordleModel;
 
 public class GameView extends JPanel{
@@ -20,6 +22,7 @@ public class GameView extends JPanel{
 
   // private int wordLength = model.getWordLength();
   private int wordLength = 5;
+  private String correctLetters = "";
 
   public GameView(WordleModel model, WordleController controller){
     int width = 400;
@@ -42,21 +45,31 @@ public class GameView extends JPanel{
     }
   }
   
-  void updateCurrentRowLabels(){
-    String playerLetters = model.getPlayerLetters().toUpperCase();
+  public void updateCurrentRowLabels(){
+    String playerLetters = model.getPlayerLetters();
     LetterRow letterRow = getCurrentLetterRow();
+  
 
-    letterRow.setText(playerLetters);
+    letterRow.setText(playerLetters, null);
 
   }
 
-  void updatePreviousRows(){
+  public void updateRow(int row){
     ArrayList<String> previousWords = model.getPlayerWords();
-    for(int i = 0; i < previousWords.size(); i++){
-      String previousWord = previousWords.get(i);
-      LetterRow letterRow = getLetterRow(i);
+    String previousWord = previousWords.get(row);
+    LetterRow letterRow = getLetterRow(row);
 
-      letterRow.setText(previousWord);
+    CorrectWord correctWord = model.getCorrectWord();
+    LetterStatus[] lettersStatus = correctWord.getLetterStatus(previousWord);
+    correctLetters += correctWord.getCorrectLetters(previousWord);
+    letterRow.setText(previousWord, lettersStatus);
+  }
+
+  public void updatePreviousRows(){
+    ArrayList<String> previousWords = model.getPlayerWords();
+    correctLetters = "";
+    for(int i = 0; i < previousWords.size(); i++){
+      updateRow(i);
     }
   }
 
@@ -66,6 +79,10 @@ public class GameView extends JPanel{
 
   LetterRow getCurrentLetterRow(){
     return getLetterRow(model.getPlayerWordRowCount());
+  }
+
+  public boolean isLetterCorrect(char c){
+    return(correctLetters.indexOf(c) >= 0);
   }
 
   public void updateLetterGrid() {

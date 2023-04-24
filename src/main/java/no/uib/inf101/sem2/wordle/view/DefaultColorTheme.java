@@ -51,7 +51,7 @@ public class DefaultColorTheme implements ColorTheme{
 
   @Override
   public Color getColorWrong() {
-    return Color.darkGray;
+    return Color.gray;
   }
   
 }

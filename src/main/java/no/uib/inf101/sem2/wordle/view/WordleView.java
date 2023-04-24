@@ -3,24 +3,9 @@ package no.uib.inf101.sem2.wordle.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.geom.Line2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseAdapter;
-import java.awt.geom.Rectangle2D;
-import java.util.Objects;
-
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import no.uib.inf101.sem2.wordle.controller.WordleController;
-import no.uib.inf101.sem2.wordle.model.GameState;
 import no.uib.inf101.sem2.wordle.model.WordleModel;
 
 public class WordleView extends JPanel {
@@ -41,7 +26,7 @@ public class WordleView extends JPanel {
     headerView = new HeaderView(model, controller);
     homeScreen = new HomeScreen(model, controller);
     gameView = new GameView(model, controller);
-    keyboardView = new KeyboardView(model, controller);
+    keyboardView = new KeyboardView(model, controller, gameView);
     BorderViewLeft = new BorderViewLeft();
     BorderViewRight = new BorderViewRight();
 
@@ -65,5 +50,6 @@ public class WordleView extends JPanel {
 
   public void updateLetterGrid(){
     gameView.updateLetterGrid();
+    keyboardView.updateKeyboard();
   }
 }

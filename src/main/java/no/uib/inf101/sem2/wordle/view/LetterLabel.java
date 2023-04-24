@@ -20,6 +20,7 @@ public class LetterLabel extends JLabel{
 
     Font font = colorTheme.getTitleFont();
     Color textColor = colorTheme.getTextColor();
+    this.setOpaque(true);
     this.setFont(font);
     this.setForeground(textColor);
     this.setHorizontalAlignment(JLabel.CENTER);
@@ -29,16 +30,9 @@ public class LetterLabel extends JLabel{
 
   // Farger rutene utifra hvilke status bokstavene har
   public void setLetterAndStatus(char c, LetterStatus status){
-    String text = Character.toString(c);
+    String text = Character.toString(c).toUpperCase();
     this.setText(text);
-    if (status ==  LetterStatus.LETTER_EMPTY){
-      this.setBackground(colorTheme.getBackgroundColor());
-    } else if (status ==  LetterStatus.LETTER_WRONG) {
-      this.setBackground(colorTheme.getColorWrong());
-    } else if (status ==  LetterStatus.LETTER_EXISTS) {
-      this.setBackground(colorTheme.getColorExists());
-    } else if (status ==  LetterStatus.LETTER_CORRECT) {
-      this.setBackground(colorTheme.getColorCorrect());
-    }
+    Color color = LetterStatusColor.getColor(status, colorTheme);
+    this.setBackground(color);
   }
 }

@@ -18,6 +18,11 @@ public class CorrectWord {
     return (correctWord.equals(playerWord));
   }
 
+  // Sjekker om bokstaven er i ordet
+  public boolean containsLetter(char c){
+    return (correctWord.indexOf(c) >= 0);
+  } 
+
   // Sjekker om spillerens inntastet ord er korrekt
   public boolean isPlayerLetterCorrect(char c, int pos){
     return (correctWord.charAt(pos) == c);
@@ -25,6 +30,21 @@ public class CorrectWord {
 
   public String toString(){
     return correctWord;
+  }
+
+  // Returnerer streng med de bokstavene som er helt riktige
+  public String getCorrectLetters(String playerWord){
+    int playerWordLen = playerWord.length();
+    String correctLetters = "";
+
+    for (int i = 0; i < playerWordLen; i++){
+      char playerLetter = playerWord.charAt(i);
+
+      if (isPlayerLetterCorrect(playerLetter, i)){
+        correctLetters += playerLetter;
+      }
+    }
+    return correctLetters;
   }
 
   public LetterStatus[] getLetterStatus(String playerWord){
@@ -66,7 +86,8 @@ public class CorrectWord {
         }
       }
     }
-    System.out.println(Arrays.toString(status));
+   // System.out.println(playerWord +" "+ correctWord);
+   // System.out.println(Arrays.toString(status));
     return status;
   }
 
