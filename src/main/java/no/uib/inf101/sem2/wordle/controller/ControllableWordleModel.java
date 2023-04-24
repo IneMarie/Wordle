@@ -1,7 +1,6 @@
 package no.uib.inf101.sem2.wordle.controller;
 
 import no.uib.inf101.sem2.wordle.model.GameState;
-import no.uib.inf101.sem2.wordle.view.LetterRow;
 
 public interface ControllableWordleModel {
 

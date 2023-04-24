@@ -1,9 +1,6 @@
 package no.uib.inf101.sem2.wordle.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics2D;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -52,7 +49,7 @@ public class HomeScreen extends JPanel{
     // Kan trykke på knappene
     b.addActionListener((e) -> {
       model.setWordLength(wordLength);
-      System.out.println(text);
+      //System.out.println(text);
     });
     return b;
   }

@@ -4,13 +4,9 @@ import javax.swing.JButton;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 
 import no.uib.inf101.sem2.wordle.controller.WordleController;
 import no.uib.inf101.sem2.wordle.model.LetterStatus;
@@ -45,7 +41,7 @@ public class KeyboardButton extends JButton{
   public void keyPressed(ActionEvent e){  
     controller.addKey(c);
 
-    System.out.println("TYPED:" + c);
+    //System.out.println("TYPED:" + c);
   }
 
   public void setStatus(LetterStatus status){

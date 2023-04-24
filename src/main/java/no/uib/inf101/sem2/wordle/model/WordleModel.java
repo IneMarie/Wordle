@@ -81,7 +81,7 @@ public class WordleModel implements ControllableWordleModel {
     c = Character.toLowerCase(c);
     if (canAddLetter() && isValidLetter(c)){
       playerLetters += c;
-      System.out.println("La inn " + c + ", ordet er nå: " + playerLetters);
+      //System.out.println("La inn " + c + ", ordet er nå: " + playerLetters);
     }
   }
 
@@ -109,7 +109,7 @@ public class WordleModel implements ControllableWordleModel {
       
     if (!this.canAddLetter()){ // Sjekker at alle bokstavene er fylt inn
       if (wordDictionary.isValidWord(playerWord)){
-        System.out.println(playerWord);
+        //System.out.println(playerWord);
         return true;
       } else {
         System.out.println("Ordet finnes ikke!");
@@ -137,7 +137,7 @@ public class WordleModel implements ControllableWordleModel {
   public void addPlayerWords(){
     playerWords.add(playerLetters);
     usedLetters += playerLetters;
-    System.out.println("La inn " + playerLetters);
+    //System.out.println("La inn " + playerLetters);
   }
 
 

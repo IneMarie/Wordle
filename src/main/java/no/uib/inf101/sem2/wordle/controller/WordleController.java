@@ -3,9 +3,7 @@ package no.uib.inf101.sem2.wordle.controller;
 import java.awt.event.KeyEvent;
 import no.uib.inf101.sem2.wordle.model.CorrectWord;
 import no.uib.inf101.sem2.wordle.model.GameState;
-import no.uib.inf101.sem2.wordle.model.WordleModel;
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
-import no.uib.inf101.sem2.wordle.view.GameView;
 import no.uib.inf101.sem2.wordle.view.WordleView;
 
 public class WordleController implements java.awt.event.KeyListener{
@@ -26,7 +24,7 @@ public class WordleController implements java.awt.event.KeyListener{
     playerLetter = Character.toLowerCase(playerLetter);
     
     model.addLetter(playerLetter);
-    System.out.println("TYPED:" + playerLetter);
+    //System.out.println("TYPED:" + playerLetter);
     
   }
   
@@ -42,13 +40,13 @@ public class WordleController implements java.awt.event.KeyListener{
     // Backspace = Sletter den siste bokstaven man skrev inn
     else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
         model.removeLetter();
-        System.out.println(model.getPlayerLetters());
+        //System.out.println(model.getPlayerLetters());
     }
   }
 
   public void checkInput(){
      if (!model.canAddLetter()){
-      System.out.println("PlayerInputs:" + model.getPlayerLetters());
+      //System.out.println("PlayerInputs:" + model.getPlayerLetters());
       if (model.isPlayerWordValid()){
         model.addPlayerWords();
         if (model.isWordValidAndCorrect()){

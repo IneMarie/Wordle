@@ -1,9 +1,5 @@
 package no.uib.inf101.sem2.wordle.model;
 
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Random;
-
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
 
 public class CorrectWord {

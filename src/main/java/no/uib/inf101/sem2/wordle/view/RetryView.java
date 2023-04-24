@@ -39,7 +39,7 @@ public class RetryView extends JPanel{
   }
 
   public void updateButton(){
-    System.out.println("GameSTATE: " + model.getGameState());
+    //System.out.println("GameSTATE: " + model.getGameState());
     if (model.getGameState() == GameState.GAME_OVER){
       retryButton.setText("Forsøk oppbrukt, prøv igjen");
     } else if (model.getGameState() == GameState.GAME_WON){

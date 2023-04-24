@@ -1,13 +1,9 @@
 package no.uib.inf101.sem2.wordle.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import no.uib.inf101.sem2.wordle.controller.WordleController;

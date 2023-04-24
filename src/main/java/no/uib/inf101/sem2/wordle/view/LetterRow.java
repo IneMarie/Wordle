@@ -1,9 +1,7 @@
 package no.uib.inf101.sem2.wordle.view;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import no.uib.inf101.sem2.wordle.model.GameState;
 import no.uib.inf101.sem2.wordle.model.LetterStatus;
 
 public class LetterRow {
