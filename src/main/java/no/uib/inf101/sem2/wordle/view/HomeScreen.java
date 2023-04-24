@@ -25,7 +25,7 @@ public class HomeScreen extends JPanel{
     this.setPreferredSize(new Dimension(width, height));
     this.colorTheme = new DefaultColorTheme();
     this.model = model;
-    this.setBackground(Color.blue);
+    this.setBackground(colorTheme.getBackgroundColor());
     
     recWidth = width / 4;
     

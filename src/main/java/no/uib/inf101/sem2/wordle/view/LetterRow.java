@@ -15,7 +15,6 @@ public class LetterRow {
     for (int i = 0; i < wordLength; i++){
       letterLabels[i] = new LetterLabel(colorTheme);
     }
-
   }
 
   public void setLetterAndStatus(int col, char c, LetterStatus status){

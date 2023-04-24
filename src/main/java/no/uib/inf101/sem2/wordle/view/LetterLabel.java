@@ -22,12 +22,12 @@ public class LetterLabel extends JLabel{
     Color textColor = colorTheme.getTextColor();
     this.setFont(font);
     this.setForeground(textColor);
-    
     this.setHorizontalAlignment(JLabel.CENTER);
 
     
   }
 
+  // Farger rutene utifra hvilke status bokstavene har
   public void setLetterAndStatus(char c, LetterStatus status){
     String text = Character.toString(c);
     this.setText(text);
