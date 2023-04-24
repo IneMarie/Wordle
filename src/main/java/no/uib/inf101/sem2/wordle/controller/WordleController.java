@@ -31,60 +31,64 @@ public class WordleController implements java.awt.event.KeyListener{
   
   @Override
   public void keyPressed(KeyEvent e) {
-
+    
     // Enter = ordet lagres, og sjekkes mot fasiten
     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
       checkInput();
     } 
-
+    
     // Backspace = Sletter den siste bokstaven man skrev inn
     else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-        model.removeLetter();
-        //System.out.println(model.getPlayerLetters());
+      model.removeLetter();
+      //System.out.println(model.getPlayerLetters());
     }
   }
-
+  
   public void checkInput(){
-     if (!model.canAddLetter()){
+    if (!model.canAddLetter()){ // Alle rutene på en rad er fulle
       //System.out.println("PlayerInputs:" + model.getPlayerLetters());
-      if (model.isPlayerWordValid()){
+      if (model.isPlayerWordValid()){ // Ordet er ekte
         model.addPlayerWords();
-        if (model.isWordValidAndCorrect()){
+        if (model.isWordValidAndCorrect()){ // Funnet det rette ordet
           gameWon();
           
-        } else {
+        } else { // Feil ord
           System.out.println("Ordet er feil :(");
-          if (view.getCurrentLetterRow() == null){
+          if (view.getCurrentLetterRow() == null){ // Tom for rader
             gameOver();
           }
         }
+        // Reseter inputten til neste rad
         model.resetInput();
       }
-    } else {
+    } else { // Fortsatt ledig plass i rutene på raden
       System.out.println("Mangler bokstaver");
     }
   }
-
+  
   public void updateLetterGrid(){
     view.updateLetterGrid();
-    
   }
-
+  
+  // Legger inn bokstav, og oppdaterer rutene
   public void addKey(char c){
     model.addLetter(c);
     updateLetterGrid();
   }
-
+  
+  // Tap
   public void gameOver(){
     System.out.println("Ingen flere rader");
     model.setGameState(GameState.GAME_OVER);
   }
-
+  
+  // Vinn
   public void gameWon(){
     System.out.println("Ordet er korrekt :)");
     model.setGameState(GameState.GAME_WON);
   }
-
+  
+  // Starter nytt spill
   public void gameRestart() {
     System.out.println("Starter spillet på nytt");
     model.restartGame();
@@ -94,10 +98,11 @@ public class WordleController implements java.awt.event.KeyListener{
   @Override
   public void keyReleased(KeyEvent e) {
   }
-
+  
+  // Fjerner en bokstav
   public void removeLetter() {
     model.removeLetter();
   }
-
-
+  
+  
 }

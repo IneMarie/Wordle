@@ -31,7 +31,7 @@ public class GameView extends JPanel{
     int rows = model.getMaxRows();
     int cols = wordLength;
 
-    // game grid
+    // Oppretter game rutenettet med gridlayout
     this.setLayout(new GridLayout(rows, cols, 5, 5));
     this.letterRows = new LetterRow[rows];
     for (int i = 0; i < rows; i++){
@@ -41,26 +41,30 @@ public class GameView extends JPanel{
     }
   }
   
+  // Oppdaterer labels (bokstavene) på den nåværende raden
   public void updateCurrentRowLabels(){
     String playerLetters = model.getPlayerLetters();
     LetterRow letterRow = getCurrentLetterRow();
 
     if (letterRow != null){
+      // Dersom raden eksiterer, settes teksten til spillerens inputs
       letterRow.setText(playerLetters, null);
     }
   }
 
+  // Oppdaterer radene som er fullt inn
   public void updateRow(int row){
     ArrayList<String> previousWords = model.getPlayerWords();
-    LetterRow letterRow = getLetterRow(row);
-    if (row < previousWords.size()){
+    LetterRow letterRow = getLetterRow(row); // Henter ut raden
+
+    if (row < previousWords.size()){ 
       String previousWord = previousWords.get(row);
-    
-      CorrectWord correctWord = model.getCorrectWord();
+      CorrectWord correctWord = model.getCorrectWord(); 
       LetterStatus[] lettersStatus = correctWord.getLetterStatus(previousWord);
-      correctLetters += correctWord.getCorrectLetters(previousWord);
+      // Sjekker hvilke av bokstavene fra sist ord som var riktige
+      correctLetters += correctWord.getCorrectLetters(previousWord);  
       letterRow.setText(previousWord, lettersStatus);
-    } else {
+    } else { // Dersom rowen ikke er "brukt" enda blir den resetet
       letterRow.setText("", null);
     }
   }
@@ -77,7 +81,7 @@ public class GameView extends JPanel{
   }
 
   LetterRow getCurrentLetterRow(){
-    int letterRow = model.getPlayerWordRowCount();
+    int letterRow = model.getPlayerWordRowCount(); //Antall rader spiller har spilt
     if (letterRow < model.getMaxRows()){
       return getLetterRow(letterRow);
     } else {
@@ -85,10 +89,12 @@ public class GameView extends JPanel{
     }
   }
 
+  // Sjekker om bokstaven er rett
   public boolean isLetterCorrect(char c){
     return(correctLetters.indexOf(c) >= 0);
   }
 
+  // Oppdaterer rader
   public void updateLetterGrid() {
     updatePreviousRows();
     updateCurrentRowLabels();

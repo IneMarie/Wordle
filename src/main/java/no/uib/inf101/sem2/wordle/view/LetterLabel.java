@@ -15,6 +15,7 @@ public class LetterLabel extends JLabel{
     Color borderColor = colorTheme.getOutlineColor();
     this.colorTheme = colorTheme;
     
+    // default
     setLetterAndStatus(' ', LetterStatus.LETTER_EMPTY);
     this.setBorder(BorderFactory.createLineBorder(borderColor));
 
@@ -24,8 +25,6 @@ public class LetterLabel extends JLabel{
     this.setFont(font);
     this.setForeground(textColor);
     this.setHorizontalAlignment(JLabel.CENTER);
-
-    
   }
 
   // Farger rutene utifra hvilke status bokstavene har

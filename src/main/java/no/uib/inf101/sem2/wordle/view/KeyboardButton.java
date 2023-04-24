@@ -44,11 +44,13 @@ public class KeyboardButton extends JButton{
     //System.out.println("TYPED:" + c);
   }
 
+  // Setter fargen på buttons
   public void setStatus(LetterStatus status){
     Color color = LetterStatusColor.getColor(status, colorTheme);
     this.setBackground(color);
   }
 
+  // Henter ut bokstaven til button
   public char getButtonLetter() {
     return c;
   }  

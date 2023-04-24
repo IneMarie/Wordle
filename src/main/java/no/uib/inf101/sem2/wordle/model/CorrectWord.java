@@ -10,6 +10,7 @@ public class CorrectWord {
     correctWord = wordDictionary.getRandomWord();
   }
 
+  // Sjekker om playerordet er lik fasiten
   public boolean isWordCorrect(String playerWord){
     return (correctWord.equals(playerWord));
   }
@@ -43,6 +44,7 @@ public class CorrectWord {
     return correctLetters;
   }
 
+  // Setter statusen på bokstavene
   public LetterStatus[] getLetterStatus(String playerWord){
     int playerWordLen = playerWord.length();
     LetterStatus[] status = new LetterStatus[playerWordLen];

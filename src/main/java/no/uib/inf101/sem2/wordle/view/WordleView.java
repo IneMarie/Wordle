@@ -13,7 +13,7 @@ import no.uib.inf101.sem2.wordle.model.WordleModel;
 public class WordleView extends JPanel {
   private WordleModel model;
   private ColorTheme colorTheme;
-  private HomeScreen homeScreen;
+  //private HomeScreen homeScreen;
   private HeaderView headerView;
   private GameView gameView;
   private KeyboardView keyboardView;
@@ -32,7 +32,7 @@ public class WordleView extends JPanel {
     
     controller = new WordleController(this, model);
     headerView = new HeaderView(model, controller);
-    homeScreen = new HomeScreen(model, controller);
+    //homeScreen = new HomeScreen(model, controller);
     gameView = new GameView(model, controller);
     keyboardView = new KeyboardView(model, controller, gameView);
     borderViewLeft = new BorderViewLeft();

@@ -6,6 +6,7 @@ import no.uib.inf101.sem2.wordle.model.LetterStatus;
 
 public class LetterStatusColor {
 
+  // Brukes for å "oversette" status til farge
   public static Color getColor(LetterStatus status, ColorTheme colorTheme){
     if (status ==  LetterStatus.LETTER_EMPTY){
       return colorTheme.getBackgroundColor();

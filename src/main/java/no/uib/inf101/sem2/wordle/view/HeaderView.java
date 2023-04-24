@@ -44,7 +44,7 @@ public class HeaderView extends JPanel{
     g2.setColor(colorTheme.getOutlineColor());
     g2.drawLine(0, 50, getWidth(), 50);
     
-    // Meny knapp TODO
+    // TODO Meny knapp 
     JButton b = new JButton("≡");
     b.setBounds(10, 10, 30, 30);  
     //this.add(b);  

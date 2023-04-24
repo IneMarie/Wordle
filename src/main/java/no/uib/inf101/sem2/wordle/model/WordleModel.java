@@ -12,9 +12,9 @@ public class WordleModel implements ControllableWordleModel {
   int wordLength = 5; // Default er 5 bokstaver
   
 
-  String playerLetters = "";
-  ArrayList<String> playerWords = new ArrayList<String>();
-  String usedLetters = "";
+  String playerLetters = ""; // nåværende player inputs
+  ArrayList<String> playerWords = new ArrayList<String>();  // Ferdige ord
+  String usedLetters = ""; // bokstaver som er brukt tidligere
 
   private WordDictionary wordDictionary;
   CorrectWord correctWord;
@@ -38,7 +38,7 @@ public class WordleModel implements ControllableWordleModel {
   public void restartGame() {
     correctWord = new CorrectWord(wordDictionary);
 
-    System.out.println("CorrectWord: " + correctWord);
+    //System.out.println("CorrectWord: " + correctWord);
     this.gameState = GameState.ACTIVE_GAME;
 
     playerLetters = "";
@@ -103,7 +103,6 @@ public class WordleModel implements ControllableWordleModel {
     return playerLetters;
   }
 
-  // TODO - brukes ikke
   public boolean isPlayerWordValid(){
     String playerWord = this.getPlayerLetters();
       
@@ -119,7 +118,6 @@ public class WordleModel implements ControllableWordleModel {
     return false;
   }
 
-
   public boolean isWordValidAndCorrect(){
     String playerWord = this.getPlayerLetters();
 
@@ -129,7 +127,6 @@ public class WordleModel implements ControllableWordleModel {
       if (correctWord.isWordCorrect(playerWord)){
         return true;
       }
-      
     }
     return false;
   }
@@ -154,10 +151,12 @@ public class WordleModel implements ControllableWordleModel {
     return gameState;
   }
 
+  // Sjekker hvor mange ord spillerene har sendt inn
   public int getPlayerWordRowCount(){
     return playerWords.size();
   }
 
+  // Sjekker om bokstaven er brukt før (grå)
   public boolean isLetterUsed(char c){
     if (usedLetters.indexOf(c) >= 0){
       return true;

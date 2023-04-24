@@ -16,7 +16,7 @@ public class KeyboardBackspace extends KeyboardButton{
 
   @Override
   public void keyPressed(ActionEvent e){  
-    controller.removeLetter();
-    controller.updateLetterGrid();
+    controller.removeLetter(); // Fjerner siste bokstav
+    controller.updateLetterGrid(); // Oppdaterer ruter
   }  
 }

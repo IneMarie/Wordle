@@ -16,7 +16,7 @@ public class KeyboardEnter extends KeyboardButton{
 
   @Override
   public void keyPressed(ActionEvent e){  
-    controller.checkInput();
-    controller.updateLetterGrid();
+    controller.checkInput(); // Sender spillerens ord til sjekking
+    controller.updateLetterGrid(); // Oppdaterer ruter
   }  
 }

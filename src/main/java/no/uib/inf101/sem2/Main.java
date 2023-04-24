@@ -9,27 +9,26 @@ import no.uib.inf101.sem2.wordle.view.WordleView;
 
 public class Main {
   public static void main(String[] args) {
+
+    // Format for å gjøre det mulig å gi knappene farger
     try {
       UIManager.setLookAndFeel( UIManager.getCrossPlatformLookAndFeelClassName() );
-      
-   } catch (Exception e) {
-              e.printStackTrace();
-   }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
     createFrame();
-    
   }
   
   private static JFrame createFrame (){
     WordleModel model = new WordleModel();
-
-    // Forskjellige views
+    
     WordleView view = new WordleView(model);
     
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setTitle("INF101 sem2 - Wordle");
     frame.setContentPane(view);
-   
+    
     frame.pack();
     frame.setVisible(true);
     
