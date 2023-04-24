@@ -43,7 +43,7 @@ public class GameView extends JPanel{
   }
   
   void updateCurrentRowLabels(){
-    String playerLetters = model.getPlayerLetters();
+    String playerLetters = model.getPlayerLetters().toUpperCase();
     LetterRow letterRow = getCurrentLetterRow();
 
     letterRow.setText(playerLetters);
