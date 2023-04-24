@@ -32,7 +32,7 @@ public class GameView extends JPanel{
     this.colorTheme = new DefaultColorTheme();
     this.setBackground(getBackground());
     
-    int rows = 6;
+    int rows = model.getMaxRows();
     int cols = wordLength;
 
     // game grid
@@ -48,10 +48,10 @@ public class GameView extends JPanel{
   public void updateCurrentRowLabels(){
     String playerLetters = model.getPlayerLetters();
     LetterRow letterRow = getCurrentLetterRow();
-  
 
-    letterRow.setText(playerLetters, null);
-
+    if (letterRow != null){
+      letterRow.setText(playerLetters, null);
+    }
   }
 
   public void updateRow(int row){
@@ -78,7 +78,12 @@ public class GameView extends JPanel{
   }
 
   LetterRow getCurrentLetterRow(){
-    return getLetterRow(model.getPlayerWordRowCount());
+    int letterRow = model.getPlayerWordRowCount();
+    if (letterRow < model.getMaxRows()){
+      return getLetterRow(letterRow);
+    } else {
+      return null;
+    }
   }
 
   public boolean isLetterCorrect(char c){
@@ -86,7 +91,7 @@ public class GameView extends JPanel{
   }
 
   public void updateLetterGrid() {
-    updateCurrentRowLabels();
     updatePreviousRows();
+    updateCurrentRowLabels();
   }
 }

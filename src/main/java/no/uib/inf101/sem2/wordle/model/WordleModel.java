@@ -139,6 +139,10 @@ public class WordleModel implements ControllableWordleModel {
     return playerWords;
   }
 
+  public int getMaxRows(){
+    return 6;
+  }
+
 
   @Override
   public GameState getGameState() {

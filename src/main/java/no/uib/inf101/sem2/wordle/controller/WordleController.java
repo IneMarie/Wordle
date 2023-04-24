@@ -52,6 +52,7 @@ public class WordleController implements java.awt.event.KeyListener{
         model.resetInput();
         if (model.isWordValidAndCorrect()){
           System.out.println("Ordet er korrekt :)");
+          
         } else {
           System.out.println("Ordet er feil :(");
         }
