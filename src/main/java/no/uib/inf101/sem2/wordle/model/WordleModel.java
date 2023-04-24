@@ -67,7 +67,7 @@ public class WordleModel implements ControllableWordleModel {
   }
 
   // Sjekker om det er gyldig bokstav
-  private boolean isValidLetter(char c){
+  public boolean isValidLetter(char c){
     String validLetters = "abcdefghijklmnopqrstuvwxyzæøå";
     if (validLetters.contains(Character.toString(c))){
       return true;

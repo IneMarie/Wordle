@@ -50,15 +50,23 @@ Disse klassene brukes kun for å ha "padding" til venstre og høyre for gameView
 #### HeaderView
 Denne klassen tegner en header med teksen "WORDLE PÅ NORSK!". Det finnes også en knapp for å "returne til homescreen", men ettersom jeg ikke fikk tid til å implementere en homescreen har denne knappen ingen funksjon (uten om å printe "TILBAKE TIL HOMESCREEN" lol)
 
-#### GameView / LetterLabel / LetterRow
+#### GameView / LetterLabel / LetterRow / LetterStatusColor
 GameView klassen sin hovedfunskjone er å opprette en grid på 6 rader, og varierende lengde kolonner (default 5, ikke implementert variende wordLength pga manglende HomeScreen). Denne klassen har også metoder for å oppdatere rutene i griden.
 
 LetterLabel klassen brukes for å sette ord og status(og farge tilsvarende statusen), i hver rute. Klassen brukes også for å midstille, sette farge, lage kant på rutene, og sette størrelse på bokstavene. Når programmet starter er alle rutene i GameView fylt med tomme mellomrom.
 
 LetterRow klassen inneholder funksjoner for å sette teksten(bokstav) og status i rutene på en rad.
 
-#### KeyboardView
-Denne klassens tegner tastaturet, og legger til "ActionListener" på hver knapp som blir opprettet slik at man kan trykke på knappene.
+LetterStatusColor klassen brukes for å "oversette" hvilken farge de ulike statusene har.
+
+#### KeyboardView / KeyboardButton / KeyboardBackspace / KeyboardEnter
+KeyboardView har som hovedoppgave å tegne tastaturet. Klassen inneholder også en metode for å oppdatere knappenes farge, og status. KeyboardButton oppretter alle knappene, legger til actionslisteners på hver slik at de kan trykkes.
+- KeyboardBackspace: egen klasse for håndtering av backspaces
+- KeyboardEnter: egen klasse for håndtering av Enter
+
+#### RetryView
+I denne klassen opprettes det en knapp man kan trykke på for å starte ett nytt spill, etter man enten har vunnet eller tapt nåværende runde. Denne knappen erstatter keyboard.
+
 
 #### HomeScreen
 Hadde ikke nok tid til å bli ferdig, men planen var at man kunne velge wordLength her.

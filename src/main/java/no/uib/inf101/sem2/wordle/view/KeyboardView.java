@@ -78,5 +78,4 @@ public class KeyboardView extends JPanel{
       }
     }
   }
-  
 }
