@@ -56,19 +56,22 @@ public class GameView extends JPanel{
 
   public void updateRow(int row){
     ArrayList<String> previousWords = model.getPlayerWords();
-    String previousWord = previousWords.get(row);
     LetterRow letterRow = getLetterRow(row);
-
-    CorrectWord correctWord = model.getCorrectWord();
-    LetterStatus[] lettersStatus = correctWord.getLetterStatus(previousWord);
-    correctLetters += correctWord.getCorrectLetters(previousWord);
-    letterRow.setText(previousWord, lettersStatus);
+    if (row < previousWords.size()){
+      String previousWord = previousWords.get(row);
+    
+      CorrectWord correctWord = model.getCorrectWord();
+      LetterStatus[] lettersStatus = correctWord.getLetterStatus(previousWord);
+      correctLetters += correctWord.getCorrectLetters(previousWord);
+      letterRow.setText(previousWord, lettersStatus);
+    } else {
+      letterRow.setText("", null);
+    }
   }
 
   public void updatePreviousRows(){
-    ArrayList<String> previousWords = model.getPlayerWords();
     correctLetters = "";
-    for(int i = 0; i < previousWords.size(); i++){
+    for(int i = 0; i < model.getMaxRows(); i++){
       updateRow(i);
     }
   }

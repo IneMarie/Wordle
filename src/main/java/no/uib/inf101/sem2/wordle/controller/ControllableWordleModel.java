@@ -1,15 +1,9 @@
 package no.uib.inf101.sem2.wordle.controller;
 
 import no.uib.inf101.sem2.wordle.model.GameState;
+import no.uib.inf101.sem2.wordle.view.LetterRow;
 
 public interface ControllableWordleModel {
-    
-/**
- * Brukes for å finne ut hvilken status spillet er o
- * @return statusen på gameState
- */
-  GameState getGameState();
-  
 
 /**
  * Brukes for å finne ut hvor langt ordet er
@@ -70,4 +64,24 @@ boolean isWordValidAndCorrect();
  * 
  */
 void addPlayerWords();
+
+
+/**
+ * Brukes for å finne ut hvilken status spillet er i
+ * @return statusen på gameState
+ */
+GameState getGameState();
+  
+
+
+/**
+ * Brukes for å sette status på spillet
+ */
+void setGameState(GameState gameOver);
+
+/**
+ * Brukes for å starte nytt spill
+ */
+void restartGame();
+
 }

@@ -2,8 +2,10 @@ package no.uib.inf101.sem2.wordle.controller;
 
 import java.awt.event.KeyEvent;
 import no.uib.inf101.sem2.wordle.model.CorrectWord;
+import no.uib.inf101.sem2.wordle.model.GameState;
 import no.uib.inf101.sem2.wordle.model.WordleModel;
 import no.uib.inf101.sem2.wordle.model.word.WordDictionary;
+import no.uib.inf101.sem2.wordle.view.GameView;
 import no.uib.inf101.sem2.wordle.view.WordleView;
 
 public class WordleController implements java.awt.event.KeyListener{
@@ -49,13 +51,16 @@ public class WordleController implements java.awt.event.KeyListener{
       System.out.println("PlayerInputs:" + model.getPlayerLetters());
       if (model.isPlayerWordValid()){
         model.addPlayerWords();
-        model.resetInput();
         if (model.isWordValidAndCorrect()){
-          System.out.println("Ordet er korrekt :)");
+          gameWon();
           
         } else {
           System.out.println("Ordet er feil :(");
+          if (view.getCurrentLetterRow() == null){
+            gameOver();
+          }
         }
+        model.resetInput();
       }
     } else {
       System.out.println("Mangler bokstaver");
@@ -71,6 +76,22 @@ public class WordleController implements java.awt.event.KeyListener{
     model.addLetter(c);
     updateLetterGrid();
   }
+
+  public void gameOver(){
+    System.out.println("Ingen flere rader");
+    model.setGameState(GameState.GAME_OVER);
+  }
+
+  public void gameWon(){
+    System.out.println("Ordet er korrekt :)");
+    model.setGameState(GameState.GAME_WON);
+  }
+
+  public void gameRestart() {
+    System.out.println("Starter spillet på nytt");
+    model.restartGame();
+    this.updateLetterGrid();
+  }
   
   @Override
   public void keyReleased(KeyEvent e) {
@@ -79,4 +100,6 @@ public class WordleController implements java.awt.event.KeyListener{
   public void removeLetter() {
     model.removeLetter();
   }
+
+
 }

@@ -50,7 +50,7 @@ public class HeaderView extends JPanel{
     // Meny knapp TODO
     JButton b = new JButton("≡");
     b.setBounds(10, 10, 30, 30);  
-    this.add(b);  
+    //this.add(b);  
     this.setLayout(null);  
     this.setVisible(true);
     

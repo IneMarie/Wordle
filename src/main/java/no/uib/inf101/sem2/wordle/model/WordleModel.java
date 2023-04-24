@@ -25,20 +25,26 @@ public class WordleModel implements ControllableWordleModel {
   }
 
   public WordleModel(){
-    // Initierer gameState til active
-    this.gameState = GameState.ACTIVE_GAME;
-
     try {
       this.wordDictionary = new WordDictionary("ordliste/ordliste2022.txt", this.getWordLength());
-      correctWord = new CorrectWord(wordDictionary);
-
-
-      System.out.println("CorrectWord: " + correctWord);
-      
+      restartGame();
       
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void restartGame() {
+    correctWord = new CorrectWord(wordDictionary);
+
+    System.out.println("CorrectWord: " + correctWord);
+    this.gameState = GameState.ACTIVE_GAME;
+
+    playerLetters = "";
+    playerWords = new ArrayList<String>();
+    usedLetters = "";
+      
   }
   
   @Override
@@ -143,7 +149,6 @@ public class WordleModel implements ControllableWordleModel {
     return 6;
   }
 
-
   @Override
   public GameState getGameState() {
     return gameState;
@@ -159,4 +164,10 @@ public class WordleModel implements ControllableWordleModel {
     }
     return false;
   }
+
+  @Override
+  public void setGameState(GameState gameState) {
+    this.gameState = gameState;
+  }
+
 }
